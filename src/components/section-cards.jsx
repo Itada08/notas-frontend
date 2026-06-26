@@ -13,25 +13,13 @@ import {
   FileTextIcon,
   CalendarIcon,
   CalendarDaysIcon,
-  ClockIcon,
 } from "lucide-react"
 
-function formatLastUpdated(dateStr) {
-  if (!dateStr) return "Nenhuma nota ainda"
-  return new Date(dateStr).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  })
-}
-
 export function SectionCards({ stats }) {
-  const { total = 0, thisWeek = 0, thisMonth = 0, lastUpdatedAt = null } =
-    stats || {}
+  const { total = 0, thisWeek = 0, thisMonth = 0 } = stats || {}
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4 dark:*:data-[slot=card]:bg-card">
+    <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-3 dark:*:data-[slot=card]:bg-card">
       <Card className="@container/card">
         <CardHeader>
           <CardDescription>Total de notas</CardDescription>
@@ -84,25 +72,6 @@ export function SectionCards({ stats }) {
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="text-muted-foreground">Notas novas no mês atual</div>
-        </CardFooter>
-      </Card>
-
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Última atualização</CardDescription>
-          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-2xl">
-            {formatLastUpdated(lastUpdatedAt)}
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <ClockIcon />
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="text-muted-foreground">
-            Nota mais recente editada
-          </div>
         </CardFooter>
       </Card>
     </div>
